@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional inline styles for centering and border */
+        body, html {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+        }
+        .login-container {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-container form {
+            text-align: center;
+        }
+        .login-container label, .login-container input, .login-container button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .login-container button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .login-container button:hover {
+            background-color: #45a049;
+        }
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form input values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Example validation (replace with your actual validation logic)
+            if (validateEmail(email) && validatePassword(password)) {
+                // Redirect to index.html after successful login
+                window.location.href = 'index.html';
+            } else {
+                // Display error message
+                document.getElementById('error').innerText = "Invalid email or password. Please try again.";
+            }
+        }
+
+        function validateEmail(email) {
+            // Simple email validation with regular expression
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function validatePassword(password) {
+            // Password validation (example: minimum 6 characters)
+            return password.length >= 6;
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+            <p id="error" class="error-message"></p>
+        </form>
+    </div>
+</body>
+</html>
